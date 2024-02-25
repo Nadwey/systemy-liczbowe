@@ -1,0 +1,10 @@
+.sectionTitle {
+    font-family: Inter;
+    font-weight: 900;
+    font-size: 4rem;
+    background: #C770CF;
+    background: linear-gradient(to bottom, #f79cff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}

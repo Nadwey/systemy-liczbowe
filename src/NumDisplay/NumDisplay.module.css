@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: baseline;
+    transition: all 0.2s;
+}
+
+.NumDisplay {
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.3rem;
+    font-family: Inter;
+    font-weight: 600;
+    text-align: right;
+    transition: all 0.2s;
+    flex: 1 1;
+    background: none;
+    color: white;
+}
