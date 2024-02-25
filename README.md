@@ -1,5 +1,5 @@
-# Systemy liczb
+# Systemy liczbowe
 
-Różne rzeczy związane z systemami liczb
+Różne rzeczy związane z systemami liczbowymi
 
 ![](img/screen1.png)

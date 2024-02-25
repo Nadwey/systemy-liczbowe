@@ -94,12 +94,12 @@ function App() {
                                 fontWeight: "900",
                                 fontSize: "1.4rem"
                             }}>
-                                Systemy liczb
+                                Systemy Liczbowe
                             </span>
                         </Group>
 
                         <Group>
-                            <HeaderLink href="https://github.com/Nadwey/systemy-liczb" target="_blank">Kod</HeaderLink>
+                            <HeaderLink href="https://github.com/Nadwey/systemy-liczbowe" target="_blank">Kod</HeaderLink>
                         </Group>
                     </Group>
                 </Container>
