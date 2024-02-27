@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./App.module.css";
 import NumDisplay from "./NumDisplay/NumDisplay.jsx";
 import { AppShell, Center, Container, Group, Stack } from "@mantine/core";
-import { base10ToOther, checkIfCorrectNumber } from "./NumDisplay/Conversions.js";
+import { base10ToOther, baseOtherTo10, checkIfCorrectNumber } from "./NumDisplay/Conversions.js";
 import HeaderLink from "./components/HeaderLink.jsx";
 
 function App() {
@@ -45,7 +45,9 @@ function App() {
      * @param {number} base
      */
     function numberUpdated(newNumber, base) {
-        const base10Number = parseFloat(newNumber); // TODO
+        console.time("baseOtherTo10");
+        const base10Number = baseOtherTo10(newNumber, base);
+        console.timeEnd("baseOtherTo10");
 
         if (!checkIfCorrectNumber(newNumber, base)) {
             setNumberDisplays((oldNumberDisplays) => {
@@ -65,7 +67,9 @@ function App() {
             return oldNumberDisplays.map((numberDisplay) => {
                 let newValue;
                 if (base !== numberDisplay.base) {
+                    console.time("base10ToOther");
                     newValue = base10ToOther(base10Number, numberDisplay.base);
+                    console.timeEnd("base10ToOther");
                 } else newValue = newNumber;
 
                 return {

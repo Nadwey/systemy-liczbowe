@@ -5,8 +5,6 @@ export default function NumInput({ fontSize, value, onChange, base, invalid }) {
         onChange(_value.target.value, base);
     }
 
-    console.log(invalid);
-
     return (
         <div className={styles.container} style={{
             borderBottom: invalid ? "solid 1px #ff0000" : "solid 1px transparent"
