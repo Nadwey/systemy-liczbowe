@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "./App.module.css";
 import NumDisplay from "./NumDisplay/NumDisplay.jsx";
-import { AppShell, Center, Container, Group, Stack } from "@mantine/core";
+import { AppShell, Button, Center, Container, Group, Stack } from "@mantine/core";
 import { base10ToOther, baseOtherTo10, checkIfCorrectNumber } from "./NumDisplay/Conversions.js";
 import HeaderLink from "./components/HeaderLink.jsx";
+import { IconPlus } from "@tabler/icons-react";
 
 function App() {
     const [numberDisplays, setNumberDisplays] = useState([
@@ -81,6 +82,14 @@ function App() {
         });
     }
 
+    function onBaseDelete(base) {
+        setNumberDisplays((oldNumberDisplays) => {
+            return oldNumberDisplays.filter(numberDisplay => {
+                if (numberDisplay.base !== base) return numberDisplay;
+            });
+        });
+    }
+
     return (
         <AppShell padding="md" header={{ height: 60 }} footer={{ height: 40 }}>
             <AppShell.Header style={{
@@ -123,12 +132,16 @@ function App() {
                                     key={numberDisplay.base}
                                     value={numberDisplay.value}
                                     onChange={numberUpdated}
+                                    onDelete={onBaseDelete}
                                     fontSize={numberDisplay.fontSize}
                                     base={numberDisplay.base}
                                     invalid={numberDisplay.invalid}
                                 />
                             );
                         })}
+                        <Button size="md" w="100%" variant="light">
+                            <IconPlus />
+                        </Button>
                     </Stack>
                 </Center>
             </AppShell.Main>
