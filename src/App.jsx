@@ -93,7 +93,7 @@ function App() {
     }
 
     function onBaseAdd() {
-        const newBase = newBaseInputValue;
+        const newBase = Math.max(Math.min(newBaseInputValue, 36), 2);
         if (numberDisplays.some((numberDisplay) => numberDisplay.base === newBase)) throw "System już jest dodany";
 
         setNumberDisplays((oldNumberDisplays) => {
