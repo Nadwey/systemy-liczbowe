@@ -1,8 +1,8 @@
 import styles from "./App.module.css";
-import { AppShell, Center, Container, Group, Stack } from "@mantine/core";
-import HeaderLink from "./components/HeaderLink.jsx";
+import { AppShell, Center, Stack } from "@mantine/core";
 import { BaseConvertion } from "./konwersja-systemow/BaseConversion.jsx";
 import BinaryRepresentation from "./binary-representation/BinaryRepresentation.jsx";
+import Header from "./components/Header/Header.jsx";
 
 function App() {
     return (
@@ -13,35 +13,7 @@ function App() {
                     backdropFilter: "blur(5px)",
                 }}
             >
-                <Container
-                    h={60}
-                    display="flex"
-                    style={{
-                        alignItems: "center",
-                        maxWidth: "1100px",
-                    }}
-                >
-                    <Group w="100%" justify="space-between">
-                        <Group>
-                            <span
-                                style={{
-                                    fontFamily: "Inter",
-                                    fontWeight: "900",
-                                    fontSize: "1.4rem",
-                                }}
-                            >
-                                Systemy Liczbowe
-                            </span>
-                            - Bartosz K
-                        </Group>
-
-                        <Group>
-                            <HeaderLink href="https://github.com/Nadwey/systemy-liczbowe" target="_blank">
-                                Kod
-                            </HeaderLink>
-                        </Group>
-                    </Group>
-                </Container>
+                <Header />
             </AppShell.Header>
 
             <AppShell.Main>
@@ -51,7 +23,7 @@ function App() {
                 <div style={{
                     display: "flex",
                     justifyContent: "center",
-                    marginBottom: "20vh",
+                    minHeight: "90vh",
                 }}>
                     <Stack px="10%" w="100%" h="100%" align="end">
                         <BaseConvertion />
