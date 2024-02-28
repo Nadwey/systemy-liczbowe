@@ -93,19 +93,22 @@ function App() {
     }
 
     function onBaseAdd() {
-        if (numberDisplays.some((numberDisplay) => numberDisplay.base === newBaseInputValue)) throw "System już jest dodany";
+        const newBase = newBaseInputValue;
+        if (numberDisplays.some((numberDisplay) => numberDisplay.base === newBase)) throw "System już jest dodany";
 
         setNumberDisplays((oldNumberDisplays) => {
             return [
                 ...oldNumberDisplays,
                 {
-                    base: newBaseInputValue,
+                    base: newBase,
                     fontSize: "1.8rem",
                     value: "0",
                     invalid: false,
                 },
             ];
         });
+
+        setNewBaseInputValue("");
     }
 
     return (
@@ -160,7 +163,17 @@ function App() {
                             </Popover.Target>
                             <Popover.Dropdown w={400}>
                                 <Group gap="xs">
-                                    <NumberInput value={newBaseInputValue} onChange={setNewBaseInputValue} flex="1 1" placeholder="Wpisz tu system liczbowy" min={2} max={36} />
+                                    <NumberInput
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") onBaseAdd();
+                                        }}
+                                        value={newBaseInputValue}
+                                        onChange={setNewBaseInputValue}
+                                        flex="1 1"
+                                        placeholder="Dodaj system liczbowy"
+                                        min={2}
+                                        max={36}
+                                    />
                                     <Button onClick={onBaseAdd}>Ok</Button>
                                 </Group>
                             </Popover.Dropdown>
