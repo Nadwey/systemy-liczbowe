@@ -1,8 +1,8 @@
 import { ActionIcon, Space } from "@mantine/core";
-import styles from "./NumDisplay.module.css";
+import styles from "./NumInput.module.css";
 import { IconTrash } from "@tabler/icons-react";
 
-export default function NumInput({ fontSize, value, onChange, onDelete, base, invalid }) {
+export default function NumInput({ fontSize, value, onChange, onDelete, base, invalid }) {    
     function _onChange(_value) {
         onChange(_value.target.value, base);
     }
@@ -22,7 +22,7 @@ export default function NumInput({ fontSize, value, onChange, onDelete, base, in
                 style={{
                     fontSize,
                 }}
-                className={styles.NumDisplay}
+                className={styles.NumInput}
                 onChange={_onChange}
                 type="text"
                 value={value}
