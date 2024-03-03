@@ -141,7 +141,7 @@ export function BaseConvertion() {
                         key={numberDisplay.base}
                         value={numberDisplay.value}
                         onChange={(newValue) => { numberUpdated(newValue, numberDisplay.base) }}
-                        editable={true}
+                        editable
                         onDelete={() => { onBaseDelete(numberDisplay.base) }}
                         denyDeletion={numberDisplay.denyDeletion}
                         size={numberDisplay.size}

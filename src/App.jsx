@@ -30,10 +30,18 @@ function App() {
                     </Stack>
                 </div>
                 <Center w="100%">
-                    <span className={styles.sectionTitle}>Reprezentacja binarna</span>
+                    <span className={styles.sectionTitle}>Reprezentacja binarna (TODO)</span>
                 </Center>
                 <Center w="100%">
-                    <BinaryRepresentation />
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                    }}>
+                        <Stack px="10%" w="100%" h="100%" align="end">
+                            <BinaryRepresentation />
+                        </Stack>
+                    </div>
+
                 </Center>
             </AppShell.Main>
         </AppShell>
