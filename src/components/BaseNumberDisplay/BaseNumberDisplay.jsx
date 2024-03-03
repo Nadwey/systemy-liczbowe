@@ -1,14 +1,14 @@
 import { ActionIcon, Space } from "@mantine/core";
-import styles from "./NumInput.module.css";
+import styles from "./BaseNumberDisplay.module.css";
 import { IconTrash } from "@tabler/icons-react";
 
-export default function NumInput({ fontSize, value, onChange, onDelete, base, invalid }) {    
+export default function BaseNumberDisplay({ value, editable, base, onChange, size, denyDeletion, onDelete, invalid }) {
     function _onChange(_value) {
-        onChange(_value.target.value, base);
+        if (editable) onChange(_value.target.value);
     }
 
     function _onDelete() {
-        onDelete(base);
+        if (!denyDeletion) onDelete();
     }
 
     return (
@@ -20,9 +20,10 @@ export default function NumInput({ fontSize, value, onChange, onDelete, base, in
         >
             <input
                 style={{
-                    fontSize,
+                    fontSize: `${size}rem`,
                 }}
-                className={styles.NumInput}
+                disabled={!editable}
+                className={styles.BaseNumberDisplay}
                 onChange={_onChange}
                 type="text"
                 value={value}
@@ -32,16 +33,17 @@ export default function NumInput({ fontSize, value, onChange, onDelete, base, in
                     display: "inline-block",
                     transform: "translateY(5px)",
                     marginLeft: "4px",
+                    fontSize: `${size / 3}rem`
                 }}
             >
                 {base}
             </span>
             <Space w="sm" />
-            {base !== 10 ? ( // nie pokazuj przycisku usuwania przy systemie dziesiętnym
-                <ActionIcon onClick={_onDelete} size={fontSize} variant="transparent" color="red">
+            {denyDeletion ? null :
+                <ActionIcon onClick={_onDelete} size={`${size}rem`} variant="transparent" color="red">
                     <IconTrash style={{ width: "70%", height: "70%" }} stroke={1.5} />
                 </ActionIcon>
-            ) : null}
+            }
         </div>
     );
 }

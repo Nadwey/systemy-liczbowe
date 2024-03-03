@@ -7,7 +7,7 @@
     transition: all 0.2s;
 }
 
-.NumInput {
+.BaseNumberDisplay {
     outline: none;
     border: none;
     margin: 0;

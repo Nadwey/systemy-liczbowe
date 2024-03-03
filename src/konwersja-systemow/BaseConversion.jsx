@@ -1,6 +1,6 @@
 import { Button, Group, NumberInput, Popover } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import NumInput from "./NumInput/NumInput.jsx";
+import BaseNumberDisplay from "../components/BaseNumberDisplay/BaseNumberDisplay.jsx";
 import { useState } from "react";
 import { base10ToOther, baseOtherTo10, checkIfCorrectNumber } from "./Conversions.js";
 
@@ -9,31 +9,32 @@ export function BaseConvertion() {
     const [numberDisplays, setNumberDisplays] = useState([
         {
             base: 10,
-            fontSize: "3.5rem",
+            size: 3.5,
             value: "0",
             invalid: false,
+            denyDeletion: true,
         },
         {
             base: 2,
-            fontSize: "1.8rem",
+            size: 1.8,
             value: "0",
             invalid: false,
         },
         {
             base: 8,
-            fontSize: "1.8rem",
+            size: 1.8,
             value: "0",
             invalid: false,
         },
         {
             base: 16,
-            fontSize: "1.8rem",
+            size: 1.8,
             value: "0",
             invalid: false,
         },
         {
             base: 36,
-            fontSize: "1.8rem",
+            size: 1.8,
             value: "0",
             invalid: false,
         },
@@ -136,12 +137,14 @@ export function BaseConvertion() {
             </Popover>
             {numberDisplays.map((numberDisplay) => {
                 return (
-                    <NumInput
+                    <BaseNumberDisplay
                         key={numberDisplay.base}
                         value={numberDisplay.value}
-                        onChange={numberUpdated}
-                        onDelete={onBaseDelete}
-                        fontSize={numberDisplay.fontSize}
+                        onChange={(newValue) => { numberUpdated(newValue, numberDisplay.base) }}
+                        editable={true}
+                        onDelete={() => { onBaseDelete(numberDisplay.base) }}
+                        denyDeletion={numberDisplay.denyDeletion}
+                        size={numberDisplay.size}
                         base={numberDisplay.base}
                         invalid={numberDisplay.invalid}
                     />
