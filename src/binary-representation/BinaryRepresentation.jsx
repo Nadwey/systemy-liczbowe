@@ -38,7 +38,7 @@ export default function BinaryRepresentation() {
         <BaseNumberDisplay size={3} base="10" invalid={!decimalInputValid} editable denyDeletion value={decimalInput} onChange={decimalChange} />
         <Space h="md" />
         <BaseNumberDisplay size={2.5} base="ZM" invalid={!zmInputValid} editable denyDeletion value={zmInput} onChange={zmChange} />
-        <BaseNumberDisplay size={2.5} base="U1" editable denyDeletion value={number} onChange={setNumber} />
-        <BaseNumberDisplay size={2.5} base="U2" editable denyDeletion value={number} onChange={setNumber} />
+        {/* <BaseNumberDisplay size={2.5} base="U1" editable denyDeletion value={number} onChange={setNumber} />
+        <BaseNumberDisplay size={2.5} base="U2" editable denyDeletion value={number} onChange={setNumber} /> */}
     </>
 }
