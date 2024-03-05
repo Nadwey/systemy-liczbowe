@@ -9,11 +9,14 @@ const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
  * @param {string} number
  * @param {number} base
  */
-export function checkIfCorrectNumber(number, base) {
+export function checkIfCorrectNumber(number, base, minusAllowed = true, fractionsAllowed = true) {
     const CORRECT_NUM_REGEX = /^-?([0-9a-z]+)(\.[0-9a-z]+)?$/;
 
     if (base < 2) throw "System musi wynosić conajmniej 2";
     if (base > DIGITS.length) throw `System musi być mniejszy od ${DIGITS.length}`;
+
+    if (!minusAllowed && number.includes("-")) return false;
+    if (!fractionsAllowed && number.includes(".")) return false;
 
     if (!CORRECT_NUM_REGEX.test(number)) return false;
 
@@ -32,8 +35,7 @@ export function checkIfCorrectNumber(number, base) {
  * @returns {string}
  */
 export function base10ToOther(inputNumber, outBase) {
-    const czyUjemna = inputNumber.includes("-");
-    const znak = czyUjemna ? "-" : "";
+    const czyUjemna = Math.sign(inputNumber) === -1;
     inputNumber = inputNumber.replace("-", "");
 
     const inputNumberParts = inputNumber.split(".");
