@@ -1,3 +1,11 @@
 :root {
     --mantine-color-body: #000000 !important;
 }
+
+.mantine-Drawer-content {
+    background-color: transparent !important;
+}
+
+.mantine-Drawer-header {
+    background-color: transparent !important;
+}
