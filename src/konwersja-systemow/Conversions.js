@@ -58,20 +58,24 @@ export function base10ToOther(inputNumber, outBase) {
             .join("");
 
     //
-    // część ułamkowa // TODO
+    // TODO: Wykrywanie powtarzania, Poprawienie tego
+    // część ułamkowa
     //
     let nowyUlamek = "";
-    if (inputNumber % 1 !== 0) {
-
+    if (inputNumberParts[1]) {
         let czesci = [];
-        let ulamek = inputNumber % 1;
+        let ulamek = new bigDecimal("0." + inputNumberParts[1]); // konwersja na ułamek :D
 
-        for (let pos = 0; pos < 10; pos++) {
-            if (ulamek === 0) break;
-            czesci.push(Math.floor(ulamek * outBase));
-            ulamek = (ulamek * outBase) % 1;
+        for (let pos = 0; pos < 15; pos++) {
+            if (Math.sign(ulamek.getValue()) === 0) break;
+
+            czesci.push(ulamek.multiply(new bigDecimal(outBase)).floor());
+
+            // te 2 linie to właściwie: "ulamek = (ulamek * outBase) % 1", tylko bigDecimal nie obsługuje reszty dzielenia na liczbach z ułamkiem
+            const mult = ulamek.multiply(new bigDecimal(outBase));
+            ulamek = mult.subtract(mult.floor());
         }
-        nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra]).join("");
+        nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.getValue()]).join("");
     }
 
     return (nowaCalkowita || "0") + nowyUlamek;
