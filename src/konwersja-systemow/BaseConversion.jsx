@@ -100,7 +100,7 @@ export function BaseConvertion() {
                 ...oldNumberDisplays,
                 {
                     base: newBase,
-                    fontSize: "1.8rem",
+                    size: 1.8,
                     value: "0",
                     invalid: false,
                 },
