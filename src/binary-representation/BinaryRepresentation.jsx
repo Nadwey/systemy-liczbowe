@@ -28,8 +28,11 @@ export default function BinaryRepresentation() {
         if (!isValid) return;
 
         setZmInput(decimalToZm(newNumber));
+        setZmInputValid(true);
         setU1Input(decimalToU1(newNumber));
+        setU1InputValid(true);
         setU2Input(decimalToU2(newNumber));
+        setU2InputValid(true);
     }
 
     function zmChange(newNumber) {
@@ -42,8 +45,11 @@ export default function BinaryRepresentation() {
         // refactor
         const decimal = zmToDecimal(newNumber);
         setDecimalInput(decimal);
+        setDecimalInputValid(true);
         setU1Input(decimalToU1(decimal));
+        setU1InputValid(true);
         setU2Input(decimalToU2(decimal));
+        setU2InputValid(true);
     }
 
     function u1Change(newNumber) {
@@ -56,8 +62,11 @@ export default function BinaryRepresentation() {
         // this
         const decimal = u1ToDecimal(newNumber);
         setDecimalInput(decimal);
+        setDecimalInputValid(true);
         setZmInput(decimalToZm(decimal));
+        setZmInputValid(true);
         setU2Input(decimalToU2(decimal));
+        setU2InputValid(true);
     }
 
     function u2Change(newNumber) {
@@ -70,8 +79,11 @@ export default function BinaryRepresentation() {
         // fuckery
         const decimal = u2ToDecimal(newNumber);
         setDecimalInput(decimal);
+        setDecimalInputValid(true);
         setU1Input(decimalToU1(decimal));
+        setU1InputValid(true);
         setZmInput(decimalToZm(decimal));
+        setZmInputValid(true);
     }
 
     return (
