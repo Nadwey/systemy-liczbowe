@@ -19,13 +19,17 @@ function App() {
 
             <AppShell.Main>
                 <Center w="100%">
-                    <span className={styles.sectionTitle}>Konwersja systemów <BaseConversionInfo /></span>
+                    <span className={styles.sectionTitle}>
+                        Konwersja systemów <BaseConversionInfo />
+                    </span>
                 </Center>
-                <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    minHeight: "90vh",
-                }}>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        minHeight: "90vh",
+                    }}
+                >
                     <Stack px="10%" w="100%" h="100%" align="end">
                         <BaseConvertion />
                     </Stack>
@@ -33,17 +37,17 @@ function App() {
                 <Center w="100%">
                     <span className={styles.sectionTitle}>Reprezentacja binarna</span>
                 </Center>
-                <Center w="100%">
-                    <div style={{
+                <div
+                    style={{
                         display: "flex",
                         justifyContent: "center",
-                    }}>
-                        <Stack px="10%" w="100%" h="100%" align="end">
-                            <BinaryRepresentation />
-                        </Stack>
-                    </div>
-
-                </Center>
+                        width: "100%",
+                    }}
+                >
+                    <Stack px="10%" w="100%" h="100%" align="end">
+                        <BinaryRepresentation />
+                    </Stack>
+                </div>
             </AppShell.Main>
         </AppShell>
     );
