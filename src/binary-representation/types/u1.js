@@ -11,8 +11,6 @@ export function decimalToU1(decimal) {
     binary = binary.replace("-", "");
     if (binary.includes(".")) binary = binary.substring(0, binary.indexOf(".")); // usuń część ułamkową
 
-    // let zapisModulu_zera = decimal_zapisModulu.padStart(Math.max(2 ** Math.ceil(Math.log2(decimal_zapisModulu.length)), 8), "0");
-
     binary = binary.padStart(Math.max(2 ** Math.ceil(Math.log2(binary.length)), 4), "0");
 
     if (czyUjemna) {
