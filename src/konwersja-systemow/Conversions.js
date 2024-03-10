@@ -60,7 +60,7 @@ export function base10ToOther(inputNumber, outBase) {
     //
     // część z liczbami całkowitymi
     //
-    const nowaCalkowita = (czyUjemna ? "-" : "") + zapisModulu(inputNumberParts[0], outBase);
+    const nowaCalkowita = zapisModulu(inputNumberParts[0], outBase);
 
     //
     // TODO: Wykrywanie powtarzania, Poprawienie tego
@@ -83,7 +83,7 @@ export function base10ToOther(inputNumber, outBase) {
         nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.getValue()]).join("");
     }
 
-    return (nowaCalkowita || "0") + nowyUlamek;
+    return (czyUjemna ? "-" : "") + (nowaCalkowita || "0") + nowyUlamek;
 }
 
 /**
