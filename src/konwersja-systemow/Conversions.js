@@ -2,6 +2,23 @@ import bigDecimal from "js-big-decimal";
 const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 /**
+ * Zamienia 0 na 1 i 1 na 0
+ *
+ * @param {string} input
+ * @returns {string}
+ */
+export function flipZerosAndOnes(input) {
+    return input
+        .split("")
+        .map((cyfra) =>
+            cyfra == "0" ? "1"
+            : cyfra == "1" ? "0"
+            : cyfra,
+        )
+        .join("");
+}
+
+/**
  * Sprawdza czy licza jest poprawna w wybranym systemie
  * np. checkIfCorrectNumber(123, 10) zwróci nam true, a checkIfCorrectNumber(123a, 10) zwróci false
  *
@@ -41,21 +58,9 @@ export function base10ToOther(inputNumber, outBase) {
     const inputNumberParts = inputNumber.split(".");
 
     //
-    // część z liczbami całkowitymi (nie chciało mi się wymyślać angielskich nazw)
+    // część z liczbami całkowitymi
     //
-    let reszty = [];
-    let iloraz = BigInt(inputNumberParts[0]);
-    while (iloraz > 0) {
-        const reszta = iloraz % BigInt(outBase);
-        iloraz = (iloraz - reszta) / BigInt(outBase);
-        reszty.push(reszta);
-    }
-    const nowaCalkowita =
-        (czyUjemna ? "-" : "") +
-        reszty
-            .map((cyfra) => DIGITS[cyfra])
-            .toReversed()
-            .join("");
+    const nowaCalkowita = (czyUjemna ? "-" : "") + zapisModulu(inputNumberParts[0], outBase);
 
     //
     // TODO: Wykrywanie powtarzania, Poprawienie tego
@@ -88,7 +93,7 @@ export function base10ToOther(inputNumber, outBase) {
  * @returns {string}
  */
 export function baseOtherTo10(inputNumber, inputBase) {
-    const czyUjemna = inputNumber.includes("-");
+    const czyUjemna = Math.sign(inputNumber) === -1;
     const znak = czyUjemna ? "-" : "";
     inputNumber = inputNumber.replace("-", "");
 
@@ -116,4 +121,24 @@ export function baseOtherTo10(inputNumber, inputBase) {
     }
 
     return znak + outInteger.toString();
+}
+
+/**
+ *
+ * @param {string} inputNumber - liczba dziesiętna, nieujemna
+ * @param {number} outBase
+ * @returns {string}
+ */
+export function zapisModulu(inputNumber, outBase) {
+    let reszty = [];
+    let iloraz = BigInt(inputNumber);
+    while (iloraz > 0) {
+        const reszta = iloraz % BigInt(outBase);
+        iloraz = (iloraz - reszta) / BigInt(outBase);
+        reszty.push(reszta);
+    }
+    return reszty
+        .map((cyfra) => DIGITS[cyfra])
+        .toReversed()
+        .join("");
 }
