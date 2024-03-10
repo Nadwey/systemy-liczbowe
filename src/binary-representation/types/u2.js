@@ -1,4 +1,3 @@
-import { base10ToOther } from "../../konwersja-systemow/Conversions";
 import { decimalToU1 } from "./u1";
 
 /**

@@ -5,6 +5,7 @@ import { checkIfCorrectNumber } from "../konwersja-systemow/Conversions.js";
 import { decimalToZm, zmToDecimal } from "./types/zm.js";
 import { decimalToU1, u1ToDecimal } from "./types/u1.js";
 import { decimalToU2, u2ToDecimal } from "./types/u2.js";
+import { nearestPower } from "./utils.js";
 
 // TODO: Refactor for god's sake
 export default function BinaryRepresentation() {
@@ -91,8 +92,8 @@ export default function BinaryRepresentation() {
             <BaseNumberDisplay size={3} base="10" invalid={!decimalInputValid} editable denyDeletion value={decimalInput} onChange={decimalChange} />
             <Space h="md" />
             <BaseNumberDisplay size={2.5} base="ZM" invalid={!zmInputValid} editable denyDeletion value={zmInput} onChange={zmChange} />
-            <BaseNumberDisplay size={2.5} base="U1" invalid={!u1InputValid} editable denyDeletion value={u1Input} onChange={u1Change} />
-            <BaseNumberDisplay size={2.5} base="U2" invalid={!u2InputValid} editable denyDeletion value={u2Input} onChange={u2Change} />
+            <BaseNumberDisplay size={2.5} base={`U1 (${u1Input.length})`} invalid={!u1InputValid} editable denyDeletion value={u1Input} onChange={u1Change} />
+            <BaseNumberDisplay size={2.5} base={`U2 (${u2Input.length})`} editable denyDeletion value={u2Input} onChange={u2Change} />
         </>
     );
 }

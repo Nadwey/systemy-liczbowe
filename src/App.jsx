@@ -39,18 +39,17 @@ function App() {
                 <Center w="100%">
                     <span className={styles.sectionTitle}>Reprezentacja binarna</span>
                 </Center>
-                <Center w="100%">
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Stack px="10%" w="100%" h="100%" align="end">
-                            <BinaryRepresentation />
-                        </Stack>
-                    </div>
-                </Center>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                    }}
+                >
+                    <Stack px="10%" w="100%" h="100%" align="end">
+                        <BinaryRepresentation />
+                    </Stack>
+                </div>
                 <Space h="50vh" />
                 <Center w="100%">
                     <span className={styles.sectionTitle}>
@@ -65,16 +64,15 @@ function App() {
                         />
                     </span>
                 </Center>
-                <Center w="100%">
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Stack px="10%" w="100%" h="100%" align="end"></Stack>
-                    </div>
-                </Center>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        width: "100%",
+                    }}
+                >
+                    <Stack px="10%" w="100%" h="100%" align="end"></Stack>
+                </div>
             </AppShell.Main>
         </AppShell>
     );
