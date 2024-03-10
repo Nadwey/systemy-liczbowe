@@ -5,6 +5,7 @@ import BinaryRepresentation from "./binary-representation/BinaryRepresentation.j
 import Header from "./components/Header/Header.jsx";
 import BaseConversionInfo from "./konwersja-systemow/info/BaseConversionInfo.jsx";
 import { IconBarrierBlock } from "@tabler/icons-react";
+import IEEE754 from "./ieee754/IEEE754.jsx";
 
 function App() {
     return (
@@ -28,14 +29,13 @@ function App() {
                     style={{
                         display: "flex",
                         justifyContent: "center",
-                        minHeight: "90vh",
                     }}
                 >
                     <Stack px="10%" w="100%" h="100%" align="end">
                         <BaseConvertion />
                     </Stack>
                 </div>
-
+                <Space h="52vh" />
                 <Center w="100%">
                     <span className={styles.sectionTitle}>Reprezentacja binarna</span>
                 </Center>
@@ -50,7 +50,7 @@ function App() {
                         <BinaryRepresentation />
                     </Stack>
                 </div>
-                <Space h="50vh" />
+                <Space h="52vh" />
                 <Center w="100%">
                     <span className={styles.sectionTitle}>
                         IEEE754{" "}
@@ -69,9 +69,10 @@ function App() {
                         display: "flex",
                         justifyContent: "center",
                         width: "100%",
+                        padding: "0 10%"
                     }}
                 >
-                    <Stack px="10%" w="100%" h="100%" align="end"></Stack>
+                    <IEEE754 />
                 </div>
             </AppShell.Main>
         </AppShell>
