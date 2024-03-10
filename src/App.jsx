@@ -37,7 +37,7 @@ function App() {
                 </div>
 
                 <Center w="100%">
-                    <span className={styles.sectionTitle}>Reprezentacja binarna (TODO)</span>
+                    <span className={styles.sectionTitle}>Reprezentacja binarna</span>
                 </Center>
                 <Center w="100%">
                     <div
