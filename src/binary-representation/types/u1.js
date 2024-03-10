@@ -1,4 +1,5 @@
-import { base10ToOther, baseOtherTo10, flipZerosAndOnes, zapisModulu } from "../../konwersja-systemow/Conversions";
+import { base10ToOther, baseOtherTo10, flipZerosAndOnes } from "../../konwersja-systemow/Conversions";
+import { nearestPower } from "../utils";
 
 /**
  *
@@ -11,7 +12,7 @@ export function decimalToU1(decimal) {
     binary = binary.replace("-", "");
     if (binary.includes(".")) binary = binary.substring(0, binary.indexOf(".")); // usuń część ułamkową
 
-    binary = binary.padStart(Math.max(2 ** Math.ceil(Math.log2(binary.length)), 4), "0");
+    binary = binary.padStart(Math.max(nearestPower(binary.length, 2), 4), "0");
 
     if (czyUjemna) {
         binary = flipZerosAndOnes(binary);
