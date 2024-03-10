@@ -13,13 +13,13 @@ export default function BaseConversionInfo() {
         </ActionIcon>
 
         <Drawer overlayProps={{
-            blur: 15,
-            color: "#222222"
+            blur: 20,
+            color: "#202020"
         }} title="Konwersja Systemów" withCloseButton position="right" size="100%" opened={opened} onClose={() => { setOpened(false); }}>
             <Container  maw="1000px">
                 <Title order={2}>Konwertowanie z systemu dziesiętnego</Title>
                 <Space h="xs" />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid neque temporibus dignissimos atque optio molestias, ipsum esse mollitia ad non quas voluptatibus, cupiditate et est expedita similique dolorem perspiciatis nemo!
+                Tu w przyszłości będą ciekawe rzeczy.
             </Container>
         </Drawer>
     </>
