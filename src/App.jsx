@@ -60,7 +60,7 @@ function App() {
                                 verticalAlign: "middle",
                                 transform: "translateY(-0.4rem)", // why css
                             }}
-                            color="#ffbb00"
+                            color="#ddddff"
                             size="4rem"
                         />
                     </span>
