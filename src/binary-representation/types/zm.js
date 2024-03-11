@@ -20,10 +20,9 @@ export function decimalToZm(decimal) {
  * @param {string} zm 
  */
 export function zmToDecimal(zm) {
-    if (Math.sign(zm) === "0") return "0"; // sprawdza 0 i -0
+    if (Math.sign(zm) === 0) return "0";
     const czyUjemna = zm[0] === "1";
     zm = zm.slice(1); // usuń bit znaku
-    console.log(zm);
 
     return (czyUjemna ? "-" : "") + baseOtherTo10(zm, 2);
 }

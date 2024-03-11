@@ -52,24 +52,28 @@ export function checkIfCorrectNumber(number, base, minusAllowed = true, fraction
  * @returns {string}
  */
 export function base10ToOther(inputNumber, outBase) {
+    Big.DP = 100;
+
     const czyUjemna = Math.sign(inputNumber) === -1;
     inputNumber = inputNumber.replace("-", "");
 
-    const inputNumberParts = inputNumber.split(".");
+    const bigInputNumber = new Big(inputNumber);
+    const czescCalkowita = bigInputNumber.round(0, Big.roundDown);
+    const czescUlamkowa = bigInputNumber.mod(1);
 
     //
     // część z liczbami całkowitymi
     //
-    const nowaCalkowita = zapisModulu(inputNumberParts[0], outBase);
+    const nowaCalkowita = zapisModulu(czescCalkowita.toFixed(), outBase);
 
     //
     // TODO: Wykrywanie powtarzania, Poprawienie tego
     // część ułamkowa
     //
     let nowyUlamek = "";
-    if (inputNumberParts[1]) {
+    if (!czescUlamkowa.eq(0)) {
         let czesci = [];
-        let ulamek = new Big("0." + inputNumberParts[1]); // konwersja na ułamek :D
+        let ulamek = czescUlamkowa;
 
         for (let pos = 0; pos < 10; pos++) {
             if (ulamek.eq(0)) break;
@@ -78,6 +82,7 @@ export function base10ToOther(inputNumber, outBase) {
 
             ulamek = ulamek.mul(outBase).mod(1);
         }
+        
         nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.toNumber()]).join("");
     }
 
