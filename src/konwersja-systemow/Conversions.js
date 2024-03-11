@@ -1,4 +1,4 @@
-import bigDecimal from "js-big-decimal";
+import Big from 'big.js';
 const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 /**
@@ -69,18 +69,16 @@ export function base10ToOther(inputNumber, outBase) {
     let nowyUlamek = "";
     if (inputNumberParts[1]) {
         let czesci = [];
-        let ulamek = new bigDecimal("0." + inputNumberParts[1]); // konwersja na ułamek :D
+        let ulamek = new Big("0." + inputNumberParts[1]); // konwersja na ułamek :D
 
-        for (let pos = 0; pos < 15; pos++) {
-            if (Math.sign(ulamek.getValue()) === 0) break;
+        for (let pos = 0; pos < 10; pos++) {
+            if (ulamek.eq(0)) break;
 
-            czesci.push(ulamek.multiply(new bigDecimal(outBase)).floor());
+            czesci.push(ulamek.mul(outBase).round(0, Big.roundDown));
 
-            // te 2 linie to właściwie: "ulamek = (ulamek * outBase) % 1", tylko bigDecimal nie obsługuje reszty dzielenia na liczbach z ułamkiem
-            const mult = ulamek.multiply(new bigDecimal(outBase));
-            ulamek = mult.subtract(mult.floor());
+            ulamek = ulamek.mul(outBase).mod(1);
         }
-        nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.getValue()]).join("");
+        nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.toNumber()]).join("");
     }
 
     return (czyUjemna ? "-" : "") + (nowaCalkowita || "0") + nowyUlamek;
@@ -109,15 +107,15 @@ export function baseOtherTo10(inputNumber, inputBase) {
 
     // część ułamkowa
     if (inputNumberParts[1] !== undefined) {
-        let outFraction = new bigDecimal("0"); // nie javascriptowi bigdecimal który też w teorii daje nieskończoną dokładność
+        let outFraction = new Big(0);
         for (let i = inputNumberParts[1].length - 1; i >= 0; i--) {
             const digit = inputNumberParts[1][i];
 
-            outFraction = outFraction.add(new bigDecimal(DIGITS.indexOf(digit)));
-            outFraction = outFraction.divide(new bigDecimal(inputBase));
+            outFraction = outFraction.add(DIGITS.indexOf(digit));
+            outFraction = outFraction.div(inputBase);
         }
 
-        return znak + (outInteger.toString() || "0") + "." + outFraction.getValue().slice(2);
+        return znak + (outInteger.toString() || "0") + "." + outFraction.toString().slice(2);
     }
 
     return znak + outInteger.toString();
