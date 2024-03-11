@@ -91,6 +91,8 @@ export function base10ToOther(inputNumber, outBase) {
  * @returns {string}
  */
 export function baseOtherTo10(inputNumber, inputBase) {
+    Big.DP = 100;
+
     const czyUjemna = Math.sign(inputNumber) === -1;
     const znak = czyUjemna ? "-" : "";
     inputNumber = inputNumber.replace("-", "");
@@ -115,7 +117,7 @@ export function baseOtherTo10(inputNumber, inputBase) {
             outFraction = outFraction.div(inputBase);
         }
 
-        return znak + (outInteger.toString() || "0") + "." + outFraction.toString().slice(2);
+        return znak + (outInteger.toString() || "0") + "." + outFraction.toFixed().slice(2);
     }
 
     return znak + outInteger.toString();
