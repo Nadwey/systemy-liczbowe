@@ -93,7 +93,7 @@ export default function BinaryRepresentation() {
             <Space h="md" />
             <BaseNumberDisplay size={2.5} base="ZM" invalid={!zmInputValid} editable denyDeletion value={zmInput} onChange={zmChange} />
             <BaseNumberDisplay size={2.5} base={`U1 (${u1Input.length})`} invalid={!u1InputValid} editable denyDeletion value={u1Input} onChange={u1Change} />
-            <BaseNumberDisplay size={2.5} base={`U2 (${u2Input.length})`} editable denyDeletion value={u2Input} onChange={u2Change} />
+            <BaseNumberDisplay size={2.5} base={`U2 (${u2Input.length})`} invalid={!u2InputValid} editable denyDeletion value={u2Input} onChange={u2Change} />
         </>
     );
 }
