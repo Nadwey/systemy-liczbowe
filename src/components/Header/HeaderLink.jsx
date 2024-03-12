@@ -9,12 +9,20 @@ export default function HeaderLink({ href, target, children }) {
         const currentHostname = new URL(window.location.href).hostname;
 
         isExternal = hrefHostname !== currentHostname;
-    }
-    catch {
+    } catch {
         isExternal = true;
     }
 
-    return <a className={styles.link} href={href} target={target}>{children}<IconExternalLink style={{
-        verticalAlign: "text-bottom"
-    }} stroke={2} size={24} /></a>;
+    return (
+        <a className={styles.link} href={href} target={target}>
+            {children}
+            <IconExternalLink
+                style={{
+                    verticalAlign: "text-bottom",
+                }}
+                stroke={2}
+                size={24}
+            />
+        </a>
+    );
 }

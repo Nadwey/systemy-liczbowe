@@ -1,4 +1,4 @@
-import Big from 'big.js';
+import Big from "big.js";
 const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 /**
@@ -82,7 +82,7 @@ export function base10ToOther(inputNumber, outBase) {
 
             ulamek = ulamek.mul(outBase).mod(1);
         }
-        
+
         nowyUlamek = "." + czesci.map((cyfra) => DIGITS[cyfra.toNumber()]).join("");
     }
 

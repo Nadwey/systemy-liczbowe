@@ -33,17 +33,17 @@ export default function BaseNumberDisplay({ value, editable, base, onChange, siz
                     display: "inline-block",
                     transform: "translateY(5px)",
                     marginLeft: "4px",
-                    fontSize: `${size / 3}rem`
+                    fontSize: `${size / 3}rem`,
                 }}
             >
                 {base}
             </span>
             <Space w="sm" />
-            {denyDeletion ? null :
+            {denyDeletion ? null : (
                 <ActionIcon onClick={_onDelete} size={`${size}rem`} variant="transparent" color="red">
                     <IconTrash style={{ width: "70%", height: "70%" }} stroke={1.5} />
                 </ActionIcon>
-            }
+            )}
         </div>
     );
 }

@@ -1,8 +1,8 @@
 import { base10ToOther, baseOtherTo10 } from "../../konwersja-systemow/Conversions";
 
 /**
- * 
- * @param {string} decimal 
+ *
+ * @param {string} decimal
  */
 export function decimalToZm(decimal) {
     const czyUjemna = Math.sign(decimal) === -1;
@@ -16,8 +16,8 @@ export function decimalToZm(decimal) {
 }
 
 /**
- * 
- * @param {string} zm 
+ *
+ * @param {string} zm
  */
 export function zmToDecimal(zm) {
     if (Math.sign(zm) === 0) return "0";

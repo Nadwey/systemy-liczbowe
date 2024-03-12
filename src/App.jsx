@@ -69,7 +69,7 @@ function App() {
                         display: "flex",
                         justifyContent: "center",
                         width: "100%",
-                        padding: "0 10%"
+                        padding: "0 10%",
                     }}
                 >
                     <IEEE754 />
