@@ -1,14 +1,10 @@
 import { base10ToOther, baseOtherTo10, flipZerosAndOnes } from "../../konwersja-systemow/Conversions";
-import { nearestPower } from "../utils";
+import { isNumberNegative, nearestPower } from "../../utils";
 
-/**
- *
- * @param {string} decimal
- * @returns {string}
- */
-export function decimalToU1(decimal) {
+export function decimalToU1(decimal: string) {
     let binary = base10ToOther(decimal, 2);
-    const czyUjemna = Math.sign(binary) === -1;
+    const czyUjemna = isNumberNegative(decimal);
+
     binary = binary.replace("-", "");
     if (binary.includes(".")) binary = binary.substring(0, binary.indexOf(".")); // usuń część ułamkową
 
@@ -21,7 +17,7 @@ export function decimalToU1(decimal) {
     return binary;
 }
 
-export function u1ToDecimal(u1) {
+export function u1ToDecimal(u1: string) {
     if (!u1) return "0";
     const czyUjemna = u1[0] == "1";
 

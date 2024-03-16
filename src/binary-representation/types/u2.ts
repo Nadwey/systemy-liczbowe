@@ -1,12 +1,12 @@
+import { isNumberNegative } from "../../utils";
 import { decimalToU1 } from "./u1";
 
 /**
- * Dodaje 1 do liczy w postaci binarnej
- *
- * @param {string} number liczba binarna (np. "01101001")
- * @returns {string}
+ * Dodaje 1 do liczby w postaci binarnej
+ * 
+ * @param number liczba (np. "01011001101")
  */
-function inc(number) {
+function inc(number: string) {
     let arr = number.split("");
     for (let i = arr.length - 1; i >= 0; i--) {
         if (arr[i] == "1") {
@@ -19,13 +19,8 @@ function inc(number) {
     return arr.join("");
 }
 
-/**
- *
- * @param {string} decimal
- * @returns {string}
- */
-export function decimalToU2(decimal) {
-    const czyUjemna = Math.sign(decimal) == -1;
+export function decimalToU2(decimal: string) {
+    const czyUjemna = isNumberNegative(decimal);
     let binary = decimalToU1(decimal); // pierwszy krok jest taki sam
 
     if (czyUjemna) {
@@ -35,11 +30,7 @@ export function decimalToU2(decimal) {
     return binary;
 }
 
-/**
- *
- * @param {string} u2
- */
-export function u2ToDecimal(u2) {
+export function u2ToDecimal(u2: string) {
     let out = BigInt(0);
     for (let i = 0; i < u2.length; i++) {
         let waga = u2.length - i - 1;

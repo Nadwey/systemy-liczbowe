@@ -1,11 +1,10 @@
 import { useState } from "react";
-import BaseNumberDisplay from "../components/BaseNumberDisplay/BaseNumberDisplay.jsx";
+import BaseNumberDisplay from "../components/BaseNumberDisplay/BaseNumberDisplay.js";
 import { Space } from "@mantine/core";
 import { checkIfCorrectNumber } from "../konwersja-systemow/Conversions.js";
 import { decimalToZm, zmToDecimal } from "./types/zm.js";
 import { decimalToU1, u1ToDecimal } from "./types/u1.js";
 import { decimalToU2, u2ToDecimal } from "./types/u2.js";
-import { nearestPower } from "./utils.js";
 
 // TODO: Refactor for god's sake
 export default function BinaryRepresentation() {
@@ -21,7 +20,7 @@ export default function BinaryRepresentation() {
     const [u2Input, setU2Input] = useState("0");
     const [u2InputValid, setU2InputValid] = useState(true);
 
-    function decimalChange(newNumber) {
+    function decimalChange(newNumber: string) {
         setDecimalInput(newNumber);
         const isValid = checkIfCorrectNumber(newNumber, 10);
         setDecimalInputValid(isValid);
@@ -36,7 +35,7 @@ export default function BinaryRepresentation() {
         setU2InputValid(true);
     }
 
-    function zmChange(newNumber) {
+    function zmChange(newNumber: string) {
         setZmInput(newNumber);
         const isValid = checkIfCorrectNumber(newNumber, 2, false, true);
         setZmInputValid(isValid);
@@ -53,7 +52,7 @@ export default function BinaryRepresentation() {
         setU2InputValid(true);
     }
 
-    function u1Change(newNumber) {
+    function u1Change(newNumber: string) {
         setU1Input(newNumber);
         const isValid = checkIfCorrectNumber(newNumber, 2, false, false);
         setU1InputValid(isValid);
@@ -70,7 +69,7 @@ export default function BinaryRepresentation() {
         setU2InputValid(true);
     }
 
-    function u2Change(newNumber) {
+    function u2Change(newNumber: string) {
         setU2Input(newNumber);
         const isValid = checkIfCorrectNumber(newNumber, 2, false, false);
         setU2InputValid(isValid);

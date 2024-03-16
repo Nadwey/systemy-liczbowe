@@ -1,7 +1,13 @@
 import { IconExternalLink } from "@tabler/icons-react";
 import styles from "./HeaderLink.module.css";
 
-export default function HeaderLink({ href, target, children }) {
+interface HeaderLinkProps {
+    href: string,
+    target: string,
+    children: React.ReactNode
+}
+
+export default function HeaderLink({ href, target, children }: HeaderLinkProps) {
     let isExternal = false;
 
     try {

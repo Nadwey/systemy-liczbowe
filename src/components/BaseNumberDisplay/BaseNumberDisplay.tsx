@@ -2,13 +2,24 @@ import { ActionIcon, Space } from "@mantine/core";
 import styles from "./BaseNumberDisplay.module.css";
 import { IconTrash } from "@tabler/icons-react";
 
-export default function BaseNumberDisplay({ value, editable, base, onChange, size, denyDeletion, onDelete, invalid }) {
-    function _onChange(_value) {
+interface BaseNumberDisplayProps {
+    value: string;
+    editable: boolean;
+    base: string;
+    onChange: (value: string) => void;
+    size: number;
+    denyDeletion: boolean;
+    onDelete?: () => void;
+    invalid: boolean;
+}
+
+export default function BaseNumberDisplay({ value, editable, base, onChange, size, denyDeletion, onDelete, invalid }: BaseNumberDisplayProps) {
+    function _onChange(_value: any) {
         if (editable) onChange(_value.target.value);
     }
 
     function _onDelete() {
-        if (!denyDeletion) onDelete();
+        if (!denyDeletion) onDelete?.();
     }
 
     return (

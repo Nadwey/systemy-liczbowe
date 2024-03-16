@@ -1,11 +1,8 @@
 import { base10ToOther, baseOtherTo10 } from "../../konwersja-systemow/Conversions";
+import { isNumberNegative, numberSign } from "../../utils";
 
-/**
- *
- * @param {string} decimal
- */
-export function decimalToZm(decimal) {
-    const czyUjemna = Math.sign(decimal) === -1;
+export function decimalToZm(decimal: string) {
+    const czyUjemna = isNumberNegative(decimal);
     decimal = decimal.replace("-", "");
 
     const base2Absolute = base10ToOther(decimal, 2);
@@ -15,12 +12,8 @@ export function decimalToZm(decimal) {
     return (czyUjemna ? "1" : "0") + base2Absolute;
 }
 
-/**
- *
- * @param {string} zm
- */
-export function zmToDecimal(zm) {
-    if (Math.sign(zm) === 0) return "0";
+export function zmToDecimal(zm: string) {
+    if (numberSign(zm) === 0) return "0";
     const czyUjemna = zm[0] === "1";
     zm = zm.slice(1); // usuń bit znaku
 
