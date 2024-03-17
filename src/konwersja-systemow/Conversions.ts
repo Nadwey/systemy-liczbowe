@@ -1,13 +1,13 @@
 import Big from "big.js";
+import { isNumberNegative } from "../utils";
 const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 /**
  * Zamienia 0 na 1 i 1 na 0
  *
- * @param {string} input
- * @returns {string}
+ * @param input
  */
-export function flipZerosAndOnes(input) {
+export function flipZerosAndOnes(input: string) {
     return input
         .split("")
         .map((cyfra) =>
@@ -23,10 +23,10 @@ export function flipZerosAndOnes(input) {
  * np. checkIfCorrectNumber(123, 10) zwróci nam true, a checkIfCorrectNumber(123a, 10) zwróci false
  *
  *
- * @param {string} number
- * @param {number} base
+ * @param number
+ * @param base
  */
-export function checkIfCorrectNumber(number, base, minusAllowed = true, fractionsAllowed = true) {
+export function checkIfCorrectNumber(number: string, base: number, minusAllowed = true, fractionsAllowed = true) {
     const CORRECT_NUM_REGEX = /^-?([0-9a-z]+)(\.[0-9a-z]+)?$/;
 
     if (base < 2) throw "System musi wynosić conajmniej 2";
@@ -47,14 +47,13 @@ export function checkIfCorrectNumber(number, base, minusAllowed = true, fraction
 /**
  * Konwertuje liczbę dziesiętną na liczbę w podanym systemie liczbowym
  *
- * @param {string} inputNumber
- * @param {number} outBase
- * @returns {string}
+ * @param inputNumber
+ * @param outBase
  */
-export function base10ToOther(inputNumber, outBase) {
+export function base10ToOther(inputNumber: string, outBase: number) {
     Big.DP = 100;
 
-    const czyUjemna = Math.sign(inputNumber) === -1;
+    const czyUjemna = isNumberNegative(inputNumber);
     inputNumber = inputNumber.replace("-", "");
 
     const bigInputNumber = new Big(inputNumber);
@@ -91,14 +90,13 @@ export function base10ToOther(inputNumber, outBase) {
 
 /**
  *
- * @param {string} inputNumber
- * @param {number} inputBase
- * @returns {string}
+ * @param inputNumber
+ * @param inputBase
  */
-export function baseOtherTo10(inputNumber, inputBase) {
+export function baseOtherTo10(inputNumber: string, inputBase: number) {
     Big.DP = 100;
 
-    const czyUjemna = Math.sign(inputNumber) === -1;
+    const czyUjemna = isNumberNegative(inputNumber);
     const znak = czyUjemna ? "-" : "";
     inputNumber = inputNumber.replace("-", "");
 
@@ -130,11 +128,10 @@ export function baseOtherTo10(inputNumber, inputBase) {
 
 /**
  *
- * @param {string} inputNumber - liczba dziesiętna, nieujemna
- * @param {number} outBase
- * @returns {string}
+ * @param inputNumber - liczba dziesiętna, nieujemna
+ * @param outBase
  */
-export function zapisModulu(inputNumber, outBase) {
+export function zapisModulu(inputNumber: string, outBase: number) {
     let reszty = [];
     let iloraz = BigInt(inputNumber);
     while (iloraz > 0) {
@@ -143,7 +140,9 @@ export function zapisModulu(inputNumber, outBase) {
         reszty.push(reszta);
     }
     return reszty
+        // @ts-ignore
         .map((cyfra) => DIGITS[cyfra])
+         // @ts-ignore: TODO: check if stupid safari has support for this
         .toReversed()
         .join("");
 }

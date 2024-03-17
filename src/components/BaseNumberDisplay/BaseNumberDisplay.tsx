@@ -5,12 +5,12 @@ import { IconTrash } from "@tabler/icons-react";
 interface BaseNumberDisplayProps {
     value: string;
     editable: boolean;
-    base: string;
+    base: any;
     onChange: (value: string) => void;
     size: number;
-    denyDeletion: boolean;
+    denyDeletion?: boolean;
     onDelete?: () => void;
-    invalid: boolean;
+    invalid?: boolean;
 }
 
 export default function BaseNumberDisplay({ value, editable, base, onChange, size, denyDeletion, onDelete, invalid }: BaseNumberDisplayProps) {

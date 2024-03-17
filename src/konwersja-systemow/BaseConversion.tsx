@@ -5,8 +5,14 @@ import { useState } from "react";
 import { base10ToOther, baseOtherTo10, checkIfCorrectNumber } from "./Conversions.js";
 
 export function BaseConvertion() {
-    const [newBaseInputValue, setNewBaseInputValue] = useState("");
-    const [numberDisplays, setNumberDisplays] = useState([
+    const [newBaseInputValue, setNewBaseInputValue] = useState<string | number>("");
+    const [numberDisplays, setNumberDisplays] = useState<{
+        base: number,
+        size: number,
+        value: string,
+        invalid?: boolean,
+        denyDeletion?: boolean,
+    }[]>([
         {
             base: 10,
             size: 3.5,
@@ -40,12 +46,7 @@ export function BaseConvertion() {
         },
     ]);
 
-    /**
-     *
-     * @param {string} newNumber
-     * @param {number} base
-     */
-    function numberUpdated(newNumber, base) {
+    function numberUpdated(newNumber: string, base: number) {
         console.time("baseOtherTo10");
         const base10Number = baseOtherTo10(newNumber, base);
         console.timeEnd("baseOtherTo10");
@@ -83,7 +84,7 @@ export function BaseConvertion() {
         });
     }
 
-    function onBaseDelete(base) {
+    function onBaseDelete(base: number) {
         setNumberDisplays((oldNumberDisplays) => {
             return oldNumberDisplays.filter((numberDisplay) => {
                 if (numberDisplay.base !== base) return numberDisplay;
@@ -92,6 +93,7 @@ export function BaseConvertion() {
     }
 
     function onBaseAdd() {
+        // @ts-ignore: There are no big numbers here, so we don't care
         const newBase = Math.max(Math.min(newBaseInputValue, 36), 2);
         if (numberDisplays.some((numberDisplay) => numberDisplay.base === newBase)) throw "System już jest dodany";
 

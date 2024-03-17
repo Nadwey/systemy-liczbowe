@@ -2,9 +2,9 @@ import { IconExternalLink } from "@tabler/icons-react";
 import styles from "./HeaderLink.module.css";
 
 interface HeaderLinkProps {
-    href: string,
-    target: string,
-    children: React.ReactNode
+    href: string;
+    target: string;
+    children: React.ReactNode;
 }
 
 export default function HeaderLink({ href, target, children }: HeaderLinkProps) {
@@ -22,13 +22,15 @@ export default function HeaderLink({ href, target, children }: HeaderLinkProps) 
     return (
         <a className={styles.link} href={href} target={target}>
             {children}
-            <IconExternalLink
-                style={{
-                    verticalAlign: "text-bottom",
-                }}
-                stroke={2}
-                size={24}
-            />
+            {isExternal ?
+                <IconExternalLink
+                    style={{
+                        verticalAlign: "text-bottom",
+                    }}
+                    stroke={2}
+                    size={24}
+                />
+            :   null}
         </a>
     );
 }
