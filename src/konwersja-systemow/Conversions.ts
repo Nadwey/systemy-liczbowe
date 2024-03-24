@@ -1,5 +1,5 @@
 import Big from "big.js";
-import { isNumberNegative } from "../utils";
+import { isNumberNegative, toReversed } from "../utils";
 const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 /**
@@ -139,10 +139,6 @@ export function zapisModulu(inputNumber: string, outBase: number) {
         iloraz = (iloraz - reszta) / BigInt(outBase);
         reszty.push(reszta);
     }
-    return reszty
-        // @ts-ignore
-        .map((cyfra) => DIGITS[cyfra])
-         // @ts-ignore: TODO: check if stupid safari has support for this
-        .toReversed()
-        .join("");
+    // @ts-ignore
+    return toReversed(reszty.map((cyfra) => DIGITS[cyfra])).join("");
 }

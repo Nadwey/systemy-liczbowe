@@ -10,3 +10,7 @@ export function isNumberNegative(number: string | number) {
 export function nearestPower(number: number, base: number = 2) {
     return base ** Math.ceil(Math.log2(number));
 }
+
+export function toReversed(array: any[]) {
+    return array.slice().reverse();
+}
